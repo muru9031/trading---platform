@@ -22,7 +22,11 @@ import google.generativeai as genai
 import base64
 import os
 from dotenv import load_dotenv
-load_dotenv(override=True)
+_env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+if os.path.exists(_env_path):
+    load_dotenv(_env_path, override=True)
+else:
+    load_dotenv(override=True)
 
 # Configure Google Generative AI
 gemini_key = os.getenv("GEMINI_API_KEY") or os.getenv("VITE_GEMINI_API_KEY") or ""
